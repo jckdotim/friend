@@ -5,7 +5,6 @@ class Friend:
     def __init__(self):
         self.skills = []
         self.memories = []
-        self.cursor = 0
 
     def skill(self, func):
         self.skills.append(func)
@@ -40,11 +39,3 @@ class Friend:
                 )
             else:
                 self.memories.append(answer)
-
-
-f = Friend()
-
-def add(first: int, last: int):
-    return first + last
-
-f.skills.append(add)
