@@ -1,3 +1,5 @@
+import math
+
 from friend import Friend
 
 
@@ -5,8 +7,13 @@ f = Friend()
 
 
 @f.skill
-def add(first: int, last: int):
+def add(first: int, last: int) -> int:
     return first + last
+
+
+@f.skill
+def factorial(n: int) -> int:
+    return math.factorial(n)
 
 
 if __name__ == '__main__':
