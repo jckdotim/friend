@@ -16,7 +16,7 @@ class Friend:
            ) + 1):
             result = self.memories[0](*self.memories[1:])
             self.memories = []
-            return result
+            return f'The result is {result}.'
         elif not len(self.memories):
             return 'What do you want?'
         else:
@@ -30,7 +30,7 @@ class Friend:
     def get_answer(self, answer):
         if not len(self.memories):
             for skill in self.skills:
-                if skill.__name__ == answer:
+                if skill.__name__ in answer:
                     self.memories.append(skill)
         else:
             if(self.get_current_parameter()[1].annotation):
