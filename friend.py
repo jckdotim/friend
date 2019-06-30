@@ -1,4 +1,11 @@
+import enum
 from inspect import signature
+
+
+class Intention(enum.Enum):
+    ANSWER = 0
+    ASK_FUNCTION = 1
+    ASK_PARAMETER = 2
 
 
 class Friend:
