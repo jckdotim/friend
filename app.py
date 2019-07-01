@@ -1,6 +1,6 @@
 import math
 
-from friend import Friend
+from friend import Friend, Intention
 
 
 f = Friend()
@@ -21,6 +21,15 @@ def bmi(weight: int, height: int) -> float:
     return weight / (height * 0.01) ** 2
 
 
+def to_nl(intention, params):
+    return {
+        Intention.ASK_FUNCTION: 'What do you want?',
+        Intention.ASK_PARAMETER: 'Please tell me about {0}',
+        Intention.ANSWER: 'The result is {0}',
+    }[intention].format(*params)
+
+
 if __name__ == '__main__':
     while True:
-        f.get_answer(input(f'{f.say()} >> '))
+        intention, params = f.say()
+        f.get_answer(input(f'{to_nl(intention, params)} >> '))

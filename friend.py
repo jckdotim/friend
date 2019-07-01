@@ -23,11 +23,11 @@ class Friend:
            ) + 1):
             result = self.memories[0](*self.memories[1:])
             self.memories = []
-            return f'The result is {result}.'
+            return Intention.ANSWER, [result]
         elif not len(self.memories):
-            return 'What do you want?'
+            return Intention.ASK_FUNCTION, []
         else:
-            return f'Please tell me about {self.get_current_parameter()[0]}.'
+            return Intention.ASK_PARAMETER, [self.get_current_parameter()[0]]
 
     def get_current_parameter(self):
         return list(
