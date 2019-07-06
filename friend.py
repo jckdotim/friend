@@ -1,4 +1,5 @@
 import enum
+from distutils.util import strtobool
 from inspect import signature
 
 
@@ -40,9 +41,10 @@ class Friend:
                 if skill.__name__ in answer:
                     self.memories.append(skill)
         else:
-            if(self.get_current_parameter()[1].annotation):
-                self.memories.append(
-                    self.get_current_parameter()[1].annotation(answer)
-                )
+            anno = self.get_current_parameter()[1].annotation
+            if anno == bool:
+                self.memories.append(anno(strtobool(answer)))
+            elif anno:
+                self.memories.append(anno(answer))
             else:
                 self.memories.append(answer)
