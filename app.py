@@ -21,6 +21,11 @@ def bmi(weight: int, height: int) -> float:
     return weight / (height * 0.01) ** 2
 
 
+@f.skill
+def reverse(value: bool):
+    return not value
+
+
 def to_nl(intention, params):
     return {
         Intention.ASK_FUNCTION: 'What do you want?',
