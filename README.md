@@ -1,4 +1,5 @@
 # Friend
+[![Build Status](https://travis-ci.org/jckdotim/friend.svg?branch=master)](https://travis-ci.org/jckdotim/friend)
 
 ```
 $ python app.py
