@@ -6,7 +6,7 @@ install:
 before_script:
   - flake8 .
 script:
-  - coverage run pytest app.py
+  - coverage run -m pytest app.py
 after_success:
   - coveralls
 
