@@ -12,6 +12,10 @@ class Intention(enum.Enum):
 class Friend:
     def __init__(self):
         self.skills = []
+        self.converters = {
+            int: lambda v: int(v),
+            bool: lambda v: strtobool(v),
+        }
         self.memories = []
 
     def skill(self, func):
@@ -42,8 +46,8 @@ class Friend:
                     self.memories.append(skill)
         else:
             anno = self.get_current_parameter()[1].annotation
-            if anno == bool:
-                self.memories.append(anno(strtobool(answer)))
+            if anno and anno in self.converters:
+                self.memories.append(self.converters[anno](answer))
             elif anno:
                 self.memories.append(anno(answer))
             else:
