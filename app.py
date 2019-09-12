@@ -1,5 +1,4 @@
 import math
-from copy import deepcopy
 
 from friend import Friend, Intention
 
@@ -33,22 +32,6 @@ def to_nl(intention, params):
         Intention.ASK_PARAMETER: 'Please tell me about {0}',
         Intention.ANSWER: 'The result is {0}',
     }[intention].format(*params)
-
-
-def test_friend():
-    test_f = deepcopy(f)
-    assert test_f.say()[0] == Intention.ASK_FUNCTION
-
-    test_f.get_answer('bmi')
-    assert test_f.say()[0] == Intention.ASK_PARAMETER
-    assert test_f.say()[1][0] == 'weight'
-
-    test_f.get_answer('70')
-    assert test_f.say()[0] == Intention.ASK_PARAMETER
-    assert test_f.say()[1][0] == 'height'
-
-    test_f.get_answer('170')
-    assert test_f.say()[0] == Intention.ANSWER
 
 
 if __name__ == '__main__':
