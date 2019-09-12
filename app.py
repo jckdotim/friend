@@ -18,7 +18,7 @@ def factorial(n: int) -> int:
 
 
 @f.skill
-def bmi(weight: int, height: int) -> float:
+def bmi(weight: float, height: float) -> float:
     return weight / (height * 0.01) ** 2
 
 

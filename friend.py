@@ -14,7 +14,10 @@ class Friend:
         self.skills = []
         self.converters = {
             int: lambda v: int(v),
+            float: lambda v: float(v),
             bool: lambda v: strtobool(v),
+            str: lambda v: str(v),
+            list: lambda v: v.split(','),
         }
         self.memories = []
 
@@ -46,9 +49,13 @@ class Friend:
                     self.memories.append(skill)
         else:
             anno = self.get_current_parameter()[1].annotation
-            if anno and anno in self.converters:
-                self.memories.append(self.converters[anno](answer))
-            elif anno:
-                self.memories.append(anno(answer))
+            if anno:
+                if anno in self.converters:
+                    self.memories.append(self.converters[anno](answer))
+                elif (hasattr(anno, 'from_string') and
+                      callable(getattr(anno, 'from_string'))):
+                    self.memories.append(anno.from_string(answer))
+                else:
+                    self.memories.append(anno(answer))
             else:
                 self.memories.append(answer)
